@@ -1,4 +1,4 @@
-package modelo;
+package modelo.conexiones;
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;

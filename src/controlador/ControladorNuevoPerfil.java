@@ -3,65 +3,85 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import modelo.Perfil;
-import modelo.PerfilDAO;
+import modelo.perfiles.Perfil;
+import modelo.perfiles.PerfilDAO;
+import modelo.factories.AbstractFactory;
+import modelo.factories.BasicFactory;
 import vista.FrmNuevoPerfil;
+import vista.FrmPerfiles;
 
 public class ControladorNuevoPerfil implements ActionListener {
 
-    private FrmNuevoPerfil vistaNuevoPerfil;
+    private FrmNuevoPerfil vista;
     private PerfilDAO pDAO;
+    private AbstractFactory factory;
 
-    public ControladorNuevoPerfil(FrmNuevoPerfil vista, PerfilDAO dao) {
-        this.vistaNuevoPerfil = vista;
-        this.pDAO = dao;
-        // Asignar listeners a los botones
-        vistaNuevoPerfil.btnSiguiente.addActionListener(this);
-        vistaNuevoPerfil.btnAtras.addActionListener(this);
+    public ControladorNuevoPerfil(FrmNuevoPerfil vista) {
+        this.vista = vista;
+        this.pDAO = new PerfilDAO();
+        this.factory = new BasicFactory(); // Usar la fábrica concreta
+
+        // Registrar eventos de botones
+        this.vista.btnSiguiente.addActionListener(this);
+        this.vista.btnAtras.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vistaNuevoPerfil.btnSiguiente) {
+        if (e.getSource() == vista.btnSiguiente) {
             try {
-                String nombre = vistaNuevoPerfil.txtNombre.getText();
-                String posicion = vistaNuevoPerfil.comboPos.getSelectedItem().toString();
-                Float altura = Float.parseFloat(vistaNuevoPerfil.txtAltura.getText());
-                Float peso = Float.parseFloat(vistaNuevoPerfil.txtPeso.getText());
-                int edad = Integer.parseInt(vistaNuevoPerfil.txtEdad.getText());
+                String nombre = vista.txtNombre.getText();
+                String posicion = vista.comboPos.getSelectedItem().toString();
+                float altura = Float.parseFloat(vista.txtAltura.getText());
+                float peso = Float.parseFloat(vista.txtPeso.getText());
+                int edad = Integer.parseInt(vista.txtEdad.getText());
 
                 // Validar altura
                 if (altura < 1.50 || altura > 2.10) {
-                    vistaNuevoPerfil.txtAltura.setText("");
-                    throw new IllegalArgumentException("Estatura debe estar entre 1.50m y 2.10m.");
+                    vista.txtAltura.setText("");
+                    throw new IllegalArgumentException("La altura debe estar entre 1.50m y 2.10m.");
                 }
+
                 // Validar peso
                 if (peso <= 30.0) {
-                    vistaNuevoPerfil.txtPeso.setText("");
+                    vista.txtPeso.setText("");
                     throw new IllegalArgumentException("El peso debe ser mayor que 30 kg.");
                 }
 
-                // Crear Perfil
-                Perfil perf = new Perfil(nombre, posicion, altura, peso, edad);
-                // Añadir Perfil a la base de datos
-                pDAO.crearPerfil(perf);
-                JOptionPane.showMessageDialog(vistaNuevoPerfil, "Perfil creado correctamente.");
-                limpiarCampos();
+                // Crear Perfil usando la fábrica abstracta
+                Perfil perfil = factory.crearJugador(nombre, posicion, altura, peso, edad);
 
+                // Añadir Perfil a la base de datos
+                pDAO.crearPerfil(perfil);
+
+                JOptionPane.showMessageDialog(vista, "Perfil creado correctamente.");
+                limpiarCampos();
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(vistaNuevoPerfil, "Solo puede ingresar números en peso, altura y edad.");
+                JOptionPane.showMessageDialog(vista, "Solo puede ingresar números en peso, altura y edad.");
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(vista, ex.getMessage());
             }
         }
-        if (e.getSource() == vistaNuevoPerfil.btnAtras) {
-            vistaNuevoPerfil.dispose();
+
+        if (e.getSource() == vista.btnAtras) {
+            // Cerrar la ventana actual (FrmNuevoPerfil)
+            vista.dispose();
+
+            // Abrir la ventana de perfiles (FrmPerfiles)
+            FrmPerfiles frmPerfiles = new FrmPerfiles();
+            frmPerfiles.setVisible(true);
+            frmPerfiles.setLocationRelativeTo(null); // Centrar la ventana en la pantalla
+
+            // Pasar el control al ControladorPerfiles
+            new ControladorPerfiles(frmPerfiles);
         }
     }
 
     private void limpiarCampos() {
-        vistaNuevoPerfil.txtNombre.setText("");
-        vistaNuevoPerfil.comboPos.setSelectedIndex(0);
-        vistaNuevoPerfil.txtAltura.setText("");
-        vistaNuevoPerfil.txtPeso.setText("");
-        vistaNuevoPerfil.txtEdad.setText("");
+        vista.txtNombre.setText("");
+        vista.comboPos.setSelectedIndex(0);
+        vista.txtAltura.setText("");
+        vista.txtPeso.setText("");
+        vista.txtEdad.setText("");
     }
 }

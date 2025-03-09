@@ -5,7 +5,7 @@
 package vista;
 
 import controlador.ControladorPrincipal;
-import modelo.PerfilDAO;
+import modelo.perfiles.PerfilDAO;
 
 /**
  *
@@ -185,7 +185,6 @@ public class FrmNuevoPerfil extends javax.swing.JFrame {
     public static void main(String args[]) {
         FrmNuevoPerfil np = new FrmNuevoPerfil();
         PerfilDAO dao = new PerfilDAO();
-        ControladorPrincipal cp = new ControladorPrincipal(np, dao);
         np.setVisible(true);
         np.setLocationRelativeTo(null);
         /* Set the Nimbus look and feel */

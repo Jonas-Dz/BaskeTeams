@@ -52,6 +52,11 @@ public class FrmNuevoA extends javax.swing.JFrame {
         btnAtrasA.setText("Atrás");
 
         btnNextA.setText("Next");
+        btnNextA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextAActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Pivot:");
 
@@ -180,6 +185,10 @@ public class FrmNuevoA extends javax.swing.JFrame {
     private void comboBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBaseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBaseActionPerformed
+
+    private void btnNextAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNextAActionPerformed
 
     /**
      * @param args the command line arguments

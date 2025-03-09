@@ -1,149 +1,61 @@
 package controlador;
-//prueba commit
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
-import modelo.AlineacionDAO;
-import modelo.Perfil;
-import modelo.PerfilDAO;
-import vista.FrmActualizarJugador;
-import vista.FrmAlineacion;
-import vista.FrmCompararAlineaciones;
-import vista.FrmCompararJugador;
-import vista.FrmModificarAlineacion;
-import vista.FrmNuevoA;
-import vista.FrmNuevoPerfil;
-import vista.FrmPartido;
-import vista.FrmPerfiles;
-import vista.FrmPrincipal;
-import vista.FrmReporte;
-import vista.FrmSimular;
-import vista.FrmSugerir;
+import vista.*;
 
 public class ControladorPrincipal implements ActionListener {
 
-    Perfil objPerfil = new Perfil();
-    PerfilDAO pDAO = new PerfilDAO();
-    AlineacionDAO aDAO = new AlineacionDAO();
-    FrmPrincipal vistaPrincipal = new FrmPrincipal();
-    FrmPerfiles vistaPerfil = new FrmPerfiles();
-    FrmNuevoPerfil nPerfil = new FrmNuevoPerfil();
-    FrmNuevoA vistaNuevoA = new FrmNuevoA();
-    FrmAlineacion vistaAlineacion = new FrmAlineacion();
-    FrmPartido vistaPartido = new FrmPartido();
-
-    //Jonathan
-    FrmActualizarJugador vistaActualizarJugador = new FrmActualizarJugador();
-    FrmCompararAlineaciones vistaCompararAlineaciones = new FrmCompararAlineaciones();
-    FrmCompararJugador vistaCompararJugador = new FrmCompararJugador();
-    FrmModificarAlineacion vistaModificarAlineacion = new FrmModificarAlineacion();
-
-    //Stalyn
-    FrmReporte vistaReporte = new FrmReporte();
-    FrmSimular vistaSimular = new FrmSimular();
-    FrmSugerir vistaSugerir = new FrmSugerir();
-
-    public ControladorPrincipal() {
-    }
+    private FrmPrincipal vista;
 
     public ControladorPrincipal(FrmPrincipal vista) {
-        vistaPrincipal = vista;
-        //Ventana principal
-        vistaPrincipal.btnPerfiles.addActionListener(this);
-        vistaPrincipal.btnAlineaciones.addActionListener(this);
-        vistaPrincipal.btnPartidos.addActionListener(this);
-    }
+        this.vista = vista;
 
-    public ControladorPrincipal(FrmPerfiles vista2) {
-        vistaPerfil = vista2;
-        //Ventana perfiles
-        vistaPerfil.btnNuevoP.addActionListener(this);
-        vistaPerfil.btnActualizarP.addActionListener(this);
-        vistaPerfil.btnCompararP.addActionListener(this);
-        vistaPerfil.btnMenu.addActionListener(this);
-    }
-
-    public ControladorPrincipal(FrmNuevoPerfil vista3, PerfilDAO dao) {
-        nPerfil = vista3;
-        pDAO = dao;
-        //Ventana nuevo perfil
-        nPerfil.btnSiguiente.addActionListener(this);
-        nPerfil.btnAtras.addActionListener(this);
+        // Registrar eventos de botones
+        this.vista.btnPerfiles.addActionListener(this);
+        this.vista.btnAlineaciones.addActionListener(this);
+        this.vista.btnPartidos.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //SECCION PERFILES
-        if (e.getSource() == vistaPrincipal.btnPerfiles) {
-            vistaPerfil.setVisible(true);
-            vistaPerfil.setLocationRelativeTo(null);
-        }
-        //SECCION NUEVO PERFIL
-        if (e.getSource() == vistaPerfil.btnNuevoP) {
-            nPerfil.setVisible(true);
-            nPerfil.setLocationRelativeTo(nPerfil);
-        }
-        //SECCION CREAR PERFIL
-        if (e.getSource() == nPerfil.btnSiguiente) {
-            try {
-                String nombre = nPerfil.txtNombre.getText();
-                String posicion = nPerfil.comboPos.getSelectedItem().toString();
-                Float altura = Float.parseFloat(nPerfil.txtAltura.getText());
-                Float peso = Float.parseFloat(nPerfil.txtPeso.getText());
-                int edad = Integer.parseInt(nPerfil.txtEdad.getText());
+        if (e.getSource() == vista.btnPerfiles) {
+            // Cerrar la ventana actual
+            vista.dispose();
 
-                // Validar altura
-                if (altura < 1.50 || altura > 2.10) {
-                    nPerfil.txtAltura.setText("");
-                    throw new IllegalArgumentException("Estatura debe estar entre 1.50m y 2.10m.");
-                }
-                // Validar peso
-                if (peso <= 30.0) {
-                    nPerfil.txtPeso.setText("");
-                    throw new IllegalArgumentException("El peso debe ser mayor que 30 kg.");
-                }
+            // Abrir la ventana de perfiles
+            FrmPerfiles perfiles = new FrmPerfiles();
+            perfiles.setVisible(true);
+            perfiles.setLocationRelativeTo(null);
 
-                // Crear Perfil
-                Perfil perf = new Perfil(nombre, posicion, altura, peso, edad);
-                // Añadir Perfil a la base de datos
-                pDAO.crearPerfil(perf);
-                System.out.println("Perfil creado correctamente"); // Mensaje de depuración
-                // Mensaje de aceptación
-                JOptionPane.showMessageDialog(nPerfil, "Perfil creado correctamente.");
-                // Limpiar campos
-                limpiarCampos();
-
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(nPerfil, "Solo puede ingresar números en peso, altura y edad.");
-            }
-        }
-        if (e.getSource() == nPerfil.btnAtras) {
-            nPerfil.dispose();
+            // Pasar el control al ControladorPerfiles
+            new ControladorPerfiles(perfiles);
         }
 
-        // Sección Alineaciones: cargar jugadores por posición
-        if (e.getSource() == vistaNuevoA.comboBase) {
-            cargarJugadoresPorPosicion();
+        if (e.getSource() == vista.btnAlineaciones) {
+            // Cerrar la ventana actual
+            vista.dispose();
+
+            // Abrir la ventana de alineaciones
+            FrmAlineacion alineaciones = new FrmAlineacion();
+            alineaciones.setVisible(true);
+            alineaciones.setLocationRelativeTo(null);
+
+            // Pasar el control al ControladorAlineacion
+            new ControladorAlineacion(alineaciones);
         }
-    }
 
-    private void limpiarCampos() {
-        nPerfil.txtNombre.setText("");
-        nPerfil.comboPos.setSelectedIndex(0);
-        nPerfil.txtAltura.setText("");
-        nPerfil.txtPeso.setText("");
-        nPerfil.txtEdad.setText("");
-    }
+        if (e.getSource() == vista.btnPartidos) {
+            // Cerrar la ventana actual
+            vista.dispose();
 
-    private void cargarJugadoresPorPosicion() {
-        String posicionSeleccionada = vistaNuevoA.comboBase.getSelectedItem().toString();
+            // Abrir la ventana de partidos
+            FrmPartido partido = new FrmPartido();
+            partido.setVisible(true);
+            partido.setLocationRelativeTo(null);
 
-        java.util.List<Perfil> jugadores = aDAO.obtenerJugadoresPorPosicion(posicionSeleccionada);
-
-        vistaNuevoA.comboBase.removeAllItems();
-
-        for (Perfil jugador : jugadores) {
-            vistaNuevoA.comboBase.addItem(jugador.getNombre()); // Asumimos que quieres mostrar el nombre
+            // Pasar el control al ControladorPartido
+            new ControladorPartido(partido);
         }
     }
 }

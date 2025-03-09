@@ -1,12 +1,15 @@
-package modelo;
+package modelo.perfiles;
 
-public class Perfil {
+import modelo.alineaciones.Componente;
+import modelo.estadisticas.EstadisticasJugador;
+
+public class Perfil implements Componente {
     private String nombre;
     private String posicion;
     private float altura;
     private float peso;
     private int edad;
-    private EstadisticasJugador estadisticas; 
+    private EstadisticasJugador estadisticas;
 
     public Perfil() {}
 
@@ -74,6 +77,11 @@ public class Perfil {
 
     public void setEstadisticas(EstadisticasJugador estadisticas) {
         this.estadisticas = estadisticas;
+    }
+
+    @Override
+    public void mostrar() {
+        System.out.println("Perfil: " + nombre + ", Posición: " + posicion);
     }
 
     @Override

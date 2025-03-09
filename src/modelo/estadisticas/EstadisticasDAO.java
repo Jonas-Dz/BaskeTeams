@@ -1,5 +1,8 @@
-package modelo;
+package modelo.estadisticas;
 
+import modelo.estadisticas.EstadisticasJugador;
+import modelo.Observer.Sujeto;
+import modelo.conexiones.Conexion;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import java.util.List;

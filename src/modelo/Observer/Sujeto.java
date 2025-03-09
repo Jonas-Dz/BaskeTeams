@@ -1,5 +1,6 @@
-package modelo;
+package modelo.Observer;
 
+import modelo.Observer.Observer;
 import java.util.ArrayList;
 import java.util.List;
 

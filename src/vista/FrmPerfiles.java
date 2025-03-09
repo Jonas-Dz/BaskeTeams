@@ -5,7 +5,7 @@
 package vista;
 
 import controlador.ControladorPrincipal;
-import modelo.PerfilDAO;
+import modelo.perfiles.PerfilDAO;
 
 /**
  *
@@ -81,15 +81,13 @@ public class FrmPerfiles extends javax.swing.JFrame {
                         .addGap(157, 157, 157)
                         .addComponent(btnNuevoP))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnActualizarP)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(btnCompararP))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(126, 126, 126)
-                        .addComponent(btnMenu)))
+                        .addComponent(btnMenu))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCompararP)
+                            .addComponent(btnActualizarP))))
                 .addContainerGap(138, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,11 +97,11 @@ public class FrmPerfiles extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(58, 58, 58)
                 .addComponent(btnNuevoP)
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
                 .addComponent(btnActualizarP)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCompararP)
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
                 .addComponent(btnMenu)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -129,23 +127,11 @@ public class FrmPerfiles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPActionPerformed
-        // TODO add your handling code here:
-        FrmNuevoPerfil np = new FrmNuevoPerfil();
-        PerfilDAO dao = new PerfilDAO();
-        ControladorPrincipal cp = new ControladorPrincipal(np, dao);
-        np.setLocationRelativeTo(null);
+        
     }//GEN-LAST:event_btnNuevoPActionPerformed
 
     private void btnActualizarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPActionPerformed
-//        // TODO add your handling code here:
-//        FrmActualizarJugador faj = new FrmActualizarJugador();
-//        PerfilDAO dao = new PerfilDAO();
-//        //ControladorPrincipal cp = new ControladorPrincipal(faj, dao);
-//        faj.setVisible(true);
-//        faj.setLocationRelativeTo(null);
-        FrmActualizarJugador faj = new FrmActualizarJugador();
-        faj.setVisible(true);
-        this.setVisible(false);
+       
     }//GEN-LAST:event_btnActualizarPActionPerformed
 
     private void btnCompararPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararPActionPerformed
@@ -161,9 +147,8 @@ public class FrmPerfiles extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         FrmPerfiles fp = new FrmPerfiles();
-        ControladorPrincipal cp = new ControladorPrincipal(fp);
         fp.setVisible(true);
-        fp.setLocationRelativeTo(fp);
+        fp.setLocationRelativeTo(null);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

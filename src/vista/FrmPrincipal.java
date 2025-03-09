@@ -5,7 +5,7 @@
 package vista;
 
 import controlador.ControladorPrincipal;
-import modelo.PerfilDAO;
+import modelo.perfiles.PerfilDAO;
 
 /**
  *
@@ -72,23 +72,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addComponent(btnPerfiles)
                             .addComponent(btnPartidos)))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(117, 117, 117)
+                        .addGap(126, 126, 126)
                         .addComponent(btnAlineaciones))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(21, 21, 21)
                         .addComponent(jLabel1)))
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27)
+                .addGap(49, 49, 49)
                 .addComponent(btnPerfiles)
-                .addGap(43, 43, 43)
+                .addGap(37, 37, 37)
                 .addComponent(btnAlineaciones)
-                .addGap(30, 30, 30)
+                .addGap(36, 36, 36)
                 .addComponent(btnPartidos)
                 .addContainerGap(57, Short.MAX_VALUE))
         );
