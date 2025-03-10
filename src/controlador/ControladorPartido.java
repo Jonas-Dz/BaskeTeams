@@ -3,6 +3,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import vista.FrmPartido;
+import vista.FrmPrincipal;
 import vista.FrmSimular;
 import vista.FrmReporte;
 
@@ -16,6 +17,7 @@ public class ControladorPartido implements ActionListener {
         // Registrar eventos de botones
         this.vista.btnSimulacionPt.addActionListener(this);
         this.vista.btnReportePt.addActionListener(this);
+        this.vista.btnMenu.addActionListener(this);
     }
 
     @Override
@@ -44,6 +46,18 @@ public class ControladorPartido implements ActionListener {
 
             // Pasar el control al ControladorReporte (si existe)
             // new ControladorReporte(frmReporte);
+        } 
+        if (e.getSource() == vista.btnMenu) {
+            // Cerrar la ventana actual (FrmPerfiles)
+            vista.dispose();
+
+            // Abrir el menú principal (FrmPrincipal)
+            FrmPrincipal frmPrincipal = new FrmPrincipal();
+            frmPrincipal.setVisible(true);
+            frmPrincipal.setLocationRelativeTo(null);
+
+            // Pasar el control al ControladorPrincipal
+            new ControladorPrincipal(frmPrincipal);
         }
     }
 }

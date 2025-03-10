@@ -42,7 +42,10 @@ public class FrmModificarAlineacion extends javax.swing.JFrame {
         cbAlero = new javax.swing.JComboBox<>();
         cbAPivot = new javax.swing.JComboBox<>();
         cbPivot = new javax.swing.JComboBox<>();
+<<<<<<< HEAD
         comboAlineaciones = new javax.swing.JComboBox<>();
+=======
+>>>>>>> 531460096b5224d4b04c1750b8b7c01e15acd3c5
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Modificar Alineacion");
@@ -75,6 +78,26 @@ public class FrmModificarAlineacion extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
+=======
+        btnAtras.setText("Atras");
+
+        cbBase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbBase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbBaseActionPerformed(evt);
+            }
+        });
+
+        cbEscolta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbAlero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbAPivot.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbPivot.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+>>>>>>> 531460096b5224d4b04c1750b8b7c01e15acd3c5
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,9 +147,15 @@ public class FrmModificarAlineacion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
+<<<<<<< HEAD
                     .addComponent(btnBuscarAlineacion)
                     .addComponent(comboAlineaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+=======
+                    .addComponent(txtNombreAlineacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarAlineacion))
+                .addGap(192, 192, 192)
+>>>>>>> 531460096b5224d4b04c1750b8b7c01e15acd3c5
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cbBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -227,5 +256,9 @@ public class FrmModificarAlineacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+<<<<<<< HEAD
+=======
+    private javax.swing.JTextField txtNombreAlineacion;
+>>>>>>> 531460096b5224d4b04c1750b8b7c01e15acd3c5
     // End of variables declaration//GEN-END:variables
 }

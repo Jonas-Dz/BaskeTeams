@@ -102,6 +102,26 @@ public class PerfilDAO {
         }
         return null; // Retornar null si no se encuentra el perfil
     }
+    // Método para obtener jugadores por alineación
+    public List<Perfil> obtenerJugadoresPorAlineacion(String nombreAlineacion) {
+        List<Perfil> jugadores = new ArrayList<>();
+        BasicDBObject query = new BasicDBObject();
+        query.put("NOMBRE_ALINEACION", nombreAlineacion);
+
+        DBCursor cursor = conexion.getColeccionAlineaciones().find(query);
+        while (cursor.hasNext()) {
+            DBObject doc = cursor.next();
+            String nombre = (String) doc.get("NOMBRE");
+            String posicion = (String) doc.get("POSICION");
+            Float altura = ((Double) doc.get("ALTURA")).floatValue();
+            Float peso = ((Double) doc.get("PESO")).floatValue();
+            int edad = ((Number) doc.get("EDAD")).intValue();
+
+            Perfil jugador = new Perfil(nombre, posicion, altura, peso, edad);
+            jugadores.add(jugador);
+        }
+        return jugadores;
+    }
 
     // Eliminar un perfil por nombre
     public boolean eliminarPerfil(String nombre) {
