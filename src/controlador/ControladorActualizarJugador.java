@@ -23,18 +23,18 @@ import vista.FrmPerfiles;
  * @author danip
  */
 public class ControladorActualizarJugador implements ActionListener {
-    private FrmActualizarJugador vista;
+    private FrmActualizarJugador vistaActualizarJugador;
     private EstadisticasDAO estadisticasDAO;
     private PerfilDAO perfilDAO;
 
     public ControladorActualizarJugador(FrmActualizarJugador vista) {
-        this.vista = vista;
+        this.vistaActualizarJugador = vista;
         this.estadisticasDAO = new EstadisticasDAO();
         this.perfilDAO = new PerfilDAO();
-        this.vista.cbJugador.addActionListener(this);
-        this.vista.btnGuardar.addActionListener(this);
-        this.vista.btnRegresar.addActionListener(this); // Add action listener for btnRegresar
-        this.vista.btnEliminar.addActionListener(this); // Add action listener for btnEliminar
+        this.vistaActualizarJugador.cbJugador.addActionListener(this);
+        this.vistaActualizarJugador.btnGuardar.addActionListener(this);
+        this.vistaActualizarJugador.btnRegresar.addActionListener(this);
+        this.vistaActualizarJugador.btnEliminar.addActionListener(this); // Add action listener for btnEliminar
         llenarComboObjetos();
     }
 
@@ -42,62 +42,58 @@ public class ControladorActualizarJugador implements ActionListener {
         PerfilDAO perfilDAO = new PerfilDAO();  // Crear instancia del DAO
         List<Perfil> perfiles = perfilDAO.obtenerPerfiles(); // Obtener lista de jugadores
 
-        vista.cbJugador.removeAllItems(); // Limpiar el ComboBox antes de llenarlo
+        vistaActualizarJugador.cbJugador.removeAllItems(); // Limpiar el ComboBox antes de llenarlo
 
         for (Perfil perfil : perfiles) {
-            vista.cbJugador.addItem(perfil.getNombre()); // Agregar los nombres al ComboBox
+            vistaActualizarJugador.cbJugador.addItem(perfil.getNombre()); // Agregar los nombres al ComboBox
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vista.btnGuardar) {
+        if (e.getSource() == vistaActualizarJugador.btnGuardar) {
             guardarEstadisticas();
         }
-        if (e.getSource() == vista.btnRegresar) {
-            vista.dispose();
-
-            // Abrir la ventana de perfiles (FrmPerfiles)
-            FrmPerfiles frmPerfiles = new FrmPerfiles();
-            frmPerfiles.setVisible(true);
-            frmPerfiles.setLocationRelativeTo(null); // Centrar la ventana en la pantalla
-
-            // Pasar el control al ControladorPerfiles
-            new ControladorPerfiles(frmPerfiles);
+        if (e.getSource() == vistaActualizarJugador.btnRegresar) {
+            vistaActualizarJugador.dispose();
+            FrmPerfiles perfiles = new FrmPerfiles();
+            perfiles.setVisible(true);
+            perfiles.setLocationRelativeTo(null);
+            new ControladorPerfiles(perfiles);
         }
-        if (e.getSource() == vista.btnEliminar) {
+        if (e.getSource() == vistaActualizarJugador.btnEliminar) {
             eliminarPerfil();
         }
     }
 
     private void limpiarCampos() {
-        vista.txtRebotesTotales.setText("");
-        vista.txtBloqueosTotales.setText("");
-        vista.txtAsistenciasTotales.setText("");
-        vista.txtPuntosTotales.setText("");
-        vista.txtRobosTotales.setText("");
-        vista.txtPartidosJugados.setText("");
-        vista.txtMVPsTotales.setText("");
+        vistaActualizarJugador.txtRebotesTotales.setText("");
+        vistaActualizarJugador.txtBloqueosTotales.setText("");
+        vistaActualizarJugador.txtAsistenciasTotales.setText("");
+        vistaActualizarJugador.txtPuntosTotales.setText("");
+        vistaActualizarJugador.txtRobosTotales.setText("");
+        vistaActualizarJugador.txtPartidosJugados.setText("");
+        vistaActualizarJugador.txtMVPsTotales.setText("");
     }
 
     private void guardarEstadisticas() {
         try {
-            if (vista.txtRebotesTotales.getText().isEmpty() || vista.txtBloqueosTotales.getText().isEmpty() ||
-                vista.txtAsistenciasTotales.getText().isEmpty() || vista.txtPuntosTotales.getText().isEmpty() ||
-                vista.txtRobosTotales.getText().isEmpty() || vista.txtPartidosJugados.getText().isEmpty() ||
-                vista.txtMVPsTotales.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(vista, "Todos los campos deben estar llenos.");
+            if (vistaActualizarJugador.txtRebotesTotales.getText().isEmpty() || vistaActualizarJugador.txtBloqueosTotales.getText().isEmpty() ||
+                vistaActualizarJugador.txtAsistenciasTotales.getText().isEmpty() || vistaActualizarJugador.txtPuntosTotales.getText().isEmpty() ||
+                vistaActualizarJugador.txtRobosTotales.getText().isEmpty() || vistaActualizarJugador.txtPartidosJugados.getText().isEmpty() ||
+                vistaActualizarJugador.txtMVPsTotales.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(vistaActualizarJugador, "Todos los campos deben estar llenos.");
                 return;
             }
 
-            String nombreJugador = (String) vista.cbJugador.getSelectedItem();
-            int rebotes = Integer.parseInt(vista.txtRebotesTotales.getText());
-            int bloqueos = Integer.parseInt(vista.txtBloqueosTotales.getText());
-            int asistencias = Integer.parseInt(vista.txtAsistenciasTotales.getText());
-            int puntos = Integer.parseInt(vista.txtPuntosTotales.getText());
-            int robos = Integer.parseInt(vista.txtRobosTotales.getText());
-            int partidosJugados = Integer.parseInt(vista.txtPartidosJugados.getText());
-            int mvps = Integer.parseInt(vista.txtMVPsTotales.getText());
+            String nombreJugador = (String) vistaActualizarJugador.cbJugador.getSelectedItem();
+            int rebotes = Integer.parseInt(vistaActualizarJugador.txtRebotesTotales.getText());
+            int bloqueos = Integer.parseInt(vistaActualizarJugador.txtBloqueosTotales.getText());
+            int asistencias = Integer.parseInt(vistaActualizarJugador.txtAsistenciasTotales.getText());
+            int puntos = Integer.parseInt(vistaActualizarJugador.txtPuntosTotales.getText());
+            int robos = Integer.parseInt(vistaActualizarJugador.txtRobosTotales.getText());
+            int partidosJugados = Integer.parseInt(vistaActualizarJugador.txtPartidosJugados.getText());
+            int mvps = Integer.parseInt(vistaActualizarJugador.txtMVPsTotales.getText());
 
             EstadisticasJugador estadisticasNuevas = new EstadisticasJugador(rebotes, bloqueos, asistencias, puntos, robos, partidosJugados, mvps);
             EstadisticasJugador estadisticasExistentes = estadisticasDAO.obtenerEstadisticas(nombreJugador);
@@ -113,24 +109,24 @@ public class ControladorActualizarJugador implements ActionListener {
             }
 
             estadisticasDAO.crearEstadisticas(nombreJugador, estadisticasNuevas);
-            JOptionPane.showMessageDialog(vista, "Estadísticas actualizadas correctamente.");
+            JOptionPane.showMessageDialog(vistaActualizarJugador, "Estadísticas actualizadas correctamente.");
             limpiarCampos();
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(vista, "Solo se admiten números enteros.");
+            JOptionPane.showMessageDialog(vistaActualizarJugador, "Solo se admiten números enteros.");
         }
     }
 
     private void eliminarPerfil() {
-        String nombreJugador = (String) vista.cbJugador.getSelectedItem();
+        String nombreJugador = (String) vistaActualizarJugador.cbJugador.getSelectedItem();
         if (nombreJugador == null || nombreJugador.isEmpty()) {
-            JOptionPane.showMessageDialog(vista, "Seleccione un jugador para eliminar.");
+            JOptionPane.showMessageDialog(vistaActualizarJugador, "Seleccione un jugador para eliminar.");
             return;
         }
 
-        int confirm = JOptionPane.showConfirmDialog(vista, "¿Está seguro de eliminar el perfil seleccionado?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(vistaActualizarJugador, "¿Está seguro de eliminar el perfil seleccionado?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             perfilDAO.eliminarPerfil(nombreJugador);
-            JOptionPane.showMessageDialog(vista, "Perfil eliminado correctamente.");
+            JOptionPane.showMessageDialog(vistaActualizarJugador, "Perfil eliminado correctamente.");
             llenarComboObjetos();
             limpiarCampos();
         }

@@ -5,7 +5,7 @@
 package vista;
 
 import controlador.ControladorCompararJugador;
-import java.awt.BorderLayout;
+import controlador.ControladorPerfiles;
 import java.util.List;
 import modelo.perfiles.Perfil;
 import modelo.perfiles.PerfilDAO;
@@ -328,8 +328,8 @@ public class FrmCompararJugador extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        ControladorCompararJugador controlador = new ControladorCompararJugador(this);
-        controlador.actionPerformed(evt);
+//        ControladorCompararJugador controlador = new ControladorCompararJugador(this);
+//        controlador.actionPerformed(evt);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**

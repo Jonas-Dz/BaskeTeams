@@ -39,6 +39,14 @@ public class AlineacionDAO extends Sujeto {
         return jugadores;
     }
 
+    public Perfil obtenerJugadorPorPosicion(String posicion) {
+        List<Perfil> jugadores = obtenerJugadoresPorPosicion(posicion);
+        if (!jugadores.isEmpty()) {
+            return jugadores.get(0); // Return the first player found
+        }
+        return null;
+    }
+
     public void crearAlineacion(Alineacion alineacion) {
         BasicDBObject documento = new BasicDBObject();
         documento.put("NOMBRE", alineacion.getNombre());
@@ -60,5 +68,42 @@ public class AlineacionDAO extends Sujeto {
 
         conexion.getColeccionAlineaciones().insert(documento);
         notificarObservadores("Se ha creado una nueva alineación: " + alineacion.getNombre());
+    }
+
+    public Alineacion obtenerAlineacionPorNombre(String nombre) {
+        BasicDBObject query = new BasicDBObject();
+        query.put("NOMBRE", nombre);
+        DBObject doc = conexion.getColeccionAlineaciones().findOne(query);
+        if (doc != null) {
+            Alineacion alineacion = new Alineacion((String) doc.get("NOMBRE"));
+            List<DBObject> jugadoresDoc = (List<DBObject>) doc.get("JUGADORES");
+            for (DBObject jugadorDoc : jugadoresDoc) {
+                String nombreJugador = (String) jugadorDoc.get("NOMBRE");
+                String posicion = (String) jugadorDoc.get("POSICION");
+                // Assuming other fields are not necessary for this check
+                Perfil jugador = new Perfil(nombreJugador, posicion, 0f, 0f, 0);
+                alineacion.agregarComponente(jugador);
+            }
+            return alineacion;
+        }
+        return null;
+    }
+
+    public List<Alineacion> obtenerTodasAlineaciones() {
+        List<Alineacion> alineaciones = new ArrayList<>();
+        DBCursor cursor = conexion.getColeccionAlineaciones().find();
+        while (cursor.hasNext()) {
+            DBObject doc = cursor.next();
+            Alineacion alineacion = new Alineacion((String) doc.get("NOMBRE"));
+            List<DBObject> jugadoresDoc = (List<DBObject>) doc.get("JUGADORES");
+            for (DBObject jugadorDoc : jugadoresDoc) {
+                String nombreJugador = (String) jugadorDoc.get("NOMBRE");
+                String posicion = (String) jugadorDoc.get("POSICION");
+                Perfil jugador = new Perfil(nombreJugador, posicion, 0f, 0f, 0);
+                alineacion.agregarComponente(jugador);
+            }
+            alineaciones.add(alineacion);
+        }
+        return alineaciones;
     }
 }

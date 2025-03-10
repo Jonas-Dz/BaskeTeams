@@ -34,7 +34,7 @@ public class ControladorPerfiles implements ActionListener {
             frmNuevoPerfil.setLocationRelativeTo(null);
 
             // Pasar el control al ControladorNuevoPerfil (si existe)
-            // new ControladorNuevoPerfil(frmNuevoPerfil);
+            //new ControladorNuevoPerfil(frmNuevoPerfil);
         }
 
         if (e.getSource() == vista.btnActualizarP) {

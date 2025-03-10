@@ -220,25 +220,21 @@ public class FrmActualizarJugador extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        ControladorActualizarJugador controlador = new ControladorActualizarJugador(this);
-        controlador.actionPerformed(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtPartidosJugadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPartidosJugadosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPartidosJugadosActionPerformed
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
         ControladorActualizarJugador controlador = new ControladorActualizarJugador(this);
         controlador.actionPerformed(evt);
     }//GEN-LAST:event_btnRegresarActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-        ControladorActualizarJugador controlador = new ControladorActualizarJugador(this);
-        controlador.actionPerformed(evt);
-    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments

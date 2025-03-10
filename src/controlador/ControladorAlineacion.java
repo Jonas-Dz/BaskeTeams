@@ -37,7 +37,7 @@ public class ControladorAlineacion implements ActionListener {
             vista.dispose();
 
             // Abrir la ventana de modificar alineación
-            FrmModificarAlineacion modificarAlineacion = new FrmModificarAlineacion();
+            FrmModificarA modificarAlineacion = new FrmModificarA();
             modificarAlineacion.setVisible(true);
             modificarAlineacion.setLocationRelativeTo(null);
 
