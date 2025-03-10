@@ -61,4 +61,43 @@ public class AlineacionDAO extends Sujeto {
         conexion.getColeccionAlineaciones().insert(documento);
         notificarObservadores("Se ha creado una nueva alineación: " + alineacion.getNombre());
     }
+    
+    public List<Perfil> obtenerJugadoresPorAlineacion(String nombreAlineacion) {
+        List<Perfil> jugadores = new ArrayList<>();
+
+        BasicDBObject query = new BasicDBObject();
+        query.put("NOMBRE", nombreAlineacion);
+
+        DBObject doc = conexion.getColeccionAlineaciones().findOne(query);
+        if (doc != null) {
+            List<DBObject> jugadoresDoc = (List<DBObject>) doc.get("JUGADORES");
+            for (DBObject jugadorDoc : jugadoresDoc) {
+                String nombre = (String) jugadorDoc.get("NOMBRE");
+                String posicion = (String) jugadorDoc.get("POSICION");
+                Float altura = ((Double) jugadorDoc.get("ALTURA")).floatValue();
+                Float peso = ((Double) jugadorDoc.get("PESO")).floatValue();
+                int edad = ((Number) jugadorDoc.get("EDAD")).intValue();
+
+                Perfil jugador = new Perfil(nombre, posicion, altura, peso, edad);
+                jugadores.add(jugador);
+            }
+        }
+
+        return jugadores;
+    }
+    
+    // Método para obtener todas las alineaciones
+    public List<Alineacion> obtenerAlineaciones() {
+        List<Alineacion> alineaciones = new ArrayList<>();
+        DBCursor cursor = conexion.getColeccionAlineaciones().find();
+        while (cursor.hasNext()) {
+            DBObject doc = cursor.next();
+            String nombre = (String) doc.get("NOMBRE");
+
+            Alineacion alineacion = new Alineacion(nombre);
+            alineaciones.add(alineacion);
+        }
+        return alineaciones;
+    }
+    
 }

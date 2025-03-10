@@ -37,7 +37,6 @@ public class FrmAlineacion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnNuevoA.setFont(new java.awt.Font("Perpetua Titling MT", 3, 24)); // NOI18N
-        btnNuevoA.setForeground(new java.awt.Color(0, 0, 0));
         btnNuevoA.setText("NUEVO");
         btnNuevoA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,15 +45,12 @@ public class FrmAlineacion extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("ALINEACIÓN");
 
         btnModificarA.setFont(new java.awt.Font("Perpetua Titling MT", 3, 24)); // NOI18N
-        btnModificarA.setForeground(new java.awt.Color(0, 0, 0));
         btnModificarA.setText("Modificar");
 
         btnSugerirA.setFont(new java.awt.Font("Perpetua Titling MT", 3, 24)); // NOI18N
-        btnSugerirA.setForeground(new java.awt.Color(0, 0, 0));
         btnSugerirA.setText("Sugerir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
