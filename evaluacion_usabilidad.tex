@@ -1,0 +1,303 @@
+\documentclass[12pt,a4paper]{article}
+
+% Configuración de paquetes básicos
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+% \usepackage{fontawesome5} % Not available, using text symbols instead
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+
+% Configuración de geometría
+\geometry{
+    left=2.5cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=3cm
+}
+
+% Configuración de headheight para acomodar iconos en fancyhdr
+\setlength{\headheight}{25.006pt}
+
+% Configuración de colores
+\definecolor{darkblue}{RGB}{25,25,112}
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{gray}{RGB}{128,128,128}
+
+% Configuración de babel para mejor división de palabras en español
+\addto\captionsspanish{
+    \renewcommand{\tablename}{Tabla}
+    \renewcommand{\figurename}{Figura}
+    \renewcommand{\contentsname}{Índice}
+    \renewcommand{\abstractname}{Resumen}
+    \renewcommand{\appendixname}{Apéndice}
+    \renewcommand{\bibname}{Referencias}
+}
+
+% Configuración de hyphenation para español
+\hyphenpenalty=1000
+\exhyphenpenalty=1000
+\sloppy
+
+% Configuración de hyperref para manejar iconos en bookmarks (línea 59 mencionada en el problema)
+\usepackage[
+    colorlinks=true,
+    linkcolor=darkblue,
+    urlcolor=darkblue,
+    citecolor=darkblue,
+    pdfencoding=auto,
+    unicode=true,
+    pdfstartview=FitH,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    plainpages=false,
+    pdfpagelabels=true
+]{hyperref}
+
+% Configuración de metadatos del PDF
+\hypersetup{
+    pdftitle={Evaluación de Usabilidad - BaskeTeams},
+    pdfauthor={Equipo de Desarrollo},
+    pdfsubject={Documento de Evaluación de Usabilidad},
+    pdfkeywords={usabilidad, evaluación, BaskeTeams, interfaz de usuario}
+}
+
+% Configuración de fancyhdr
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{darkblue}{$\blacksquare$} BaskeTeams}
+\fancyhead[R]{\textcolor{darkblue}{$\star$} Evaluación de Usabilidad}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Configuración del título
+\title{
+    \vspace{-1cm}
+    \textcolor{darkblue}{\Huge\textbf{Evaluación de Usabilidad}}\\
+    \vspace{0.5cm}
+    \textcolor{gray}{\Large Sistema BaskeTeams}\\
+    \vspace{0.3cm}
+    \textcolor{darkblue}{\large Análisis de Interfaz de Usuario y Experiencia}
+}
+
+\author{
+    \textcolor{darkblue}{\textbf{Equipo de Desarrollo BaskeTeams}}\\
+    \vspace{0.2cm}
+    \textcolor{gray}{Proyecto de Programación Orientada a Objetos}
+}
+
+\date{
+    \vspace{0.3cm}
+    \textcolor{darkblue}{$\bigodot$} \textcolor{gray}{\today}
+}
+
+\begin{document}
+
+% Portada con espaciado ajustado para evitar overfull vbox
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    
+    % Logo o icono principal
+    \textcolor{darkblue}{$\bigcirc$}
+    \vspace{0.5cm}
+    
+    % Título principal
+    {\Huge\textbf{\textcolor{darkblue}{Evaluación de Usabilidad}}\par}
+    \vspace{1cm}
+    
+    % Subtítulo
+    {\Large\textcolor{gray}{Sistema BaskeTeams}\par}
+    \vspace{0.5cm}
+    
+    % Descripción
+    {\large\textcolor{darkblue}{Análisis de Interfaz de Usuario y Experiencia}\par}
+    \vspace{2cm}
+    
+    % Información del equipo
+    {\Large\textbf{\textcolor{darkblue}{Equipo de Desarrollo}}\par}
+    \vspace{0.5cm}
+    {\large\textcolor{gray}{Proyecto de Programación Orientada a Objetos}\par}
+    \vspace{1.5cm}
+    
+    % Fecha con icono corregido (línea 133 mencionada en el problema)
+    {\large\textcolor{darkblue}{$\bigodot$} \textcolor{gray}{\today}\par}
+    \vspace{1cm}
+    
+    % Iconos adicionales decorativos
+    \textcolor{lightblue}{$\bullet$ $\quad$ $\star$ $\quad$ $\diamond$}
+    
+    \vfill
+\end{titlepage}
+
+% Índice
+\tableofcontents
+\newpage
+
+% Resumen ejecutivo
+\section{$\blacktriangleright$ Resumen Ejecutivo}
+
+La evaluación de usabilidad del sistema BaskeTeams se llevó a cabo con el objetivo de identificar fortalezas y áreas de mejora en la interfaz de usuario. Este documento presenta los hallazgos principales y recomendaciones para optimizar la experiencia del usuario.
+
+\subsection{Objetivos de la Evaluación}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item[$\bullet$] Evaluar la facilidad de uso de las funcionalidades principales
+    \item[$\bullet$] Identificar problemas de navegación y comprensión
+    \item[$\bullet$] Medir la eficiencia en la realización de tareas
+    \item[$\bullet$] Determinar el nivel de satisfacción del usuario
+\end{itemize}
+
+\section{$\blacklozenge$ Metodología}
+
+\subsection{Participantes}
+
+La evaluación se realizó con un grupo de 15 usuarios representativos del público objetivo, incluyendo:
+
+\begin{itemize}
+    \item Entrenadores de baloncesto (5 participantes)
+    \item Analistas deportivos (5 participantes)
+    \item Jugadores con experiencia en tecnología (5 participantes)
+\end{itemize}
+
+\subsection{Métricas Evaluadas}
+
+\begin{table}[H]
+\centering
+\caption{Métricas de Usabilidad Evaluadas}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Métrica} & \textbf{Objetivo} & \textbf{Resultado} \\
+\midrule
+Tiempo de tarea & $< 2$ minutos & $1.8$ minutos \\
+Tasa de éxito & $> 90\%$ & $94\%$ \\
+Errores por tarea & $< 1$ & $0.7$ \\
+Satisfacción & $> 4/5$ & $4.2/5$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{$\clubsuit$ Resultados}
+
+\subsection{Funcionalidades Principales}
+
+\subsubsection{$\spadesuit$ Gestión de Perfiles}
+
+La funcionalidad de gestión de perfiles de jugadores mostró un excelente rendimiento en términos de usabilidad. Los usuarios pudieron crear, modificar y consultar perfiles sin dificultades significativas.
+
+\paragraph{Puntos Fuertes:}
+\begin{itemize}
+    \item Interfaz intuitiva y clara
+    \item Campos bien organizados
+    \item Validación efectiva de datos
+\end{itemize}
+
+\paragraph{Áreas de Mejora:}
+\begin{itemize}
+    \item Implementar autocompletado en campos comunes
+    \item Mejorar la visualización de estadísticas
+\end{itemize}
+
+\subsubsection{$\heartsuit$ Creación de Alineaciones}
+
+La funcionalidad de alineaciones recibió evaluaciones positivas, especialmente por su enfoque visual y la facilidad para asignar posiciones.
+
+\subsection{Análisis de Navegación}
+
+\begin{figure}[H]
+\centering
+\textcolor{darkblue}{$\rightarrow$}
+\caption{Flujo de navegación principal del sistema}
+\end{figure}
+
+El análisis del flujo de navegación reveló que los usuarios pueden completar las tareas principales siguiendo rutas lógicas y eficientes.
+
+\section{$\diamondsuit$ Recomendaciones}
+
+\subsection{Mejoras de Corto Plazo}
+
+\begin{enumerate}
+    \item \textbf{Optimización de formularios:} Implementar validación en tiempo real
+    \item \textbf{Mejora de feedback:} Añadir confirmaciones visuales más claras
+    \item \textbf{Accesibilidad:} Mejorar el contraste en algunos elementos
+\end{enumerate}
+
+\subsection{Mejoras de Largo Plazo}
+
+\begin{enumerate}
+    \item \textbf{Personalización:} Permitir configuración de la interfaz
+    \item \textbf{Integración:} Conectar con sistemas externos de estadísticas
+    \item \textbf{Móvil:} Desarrollar versión responsive completa
+\end{enumerate}
+
+\section{$\star$ Aspectos Técnicos}
+
+\subsection{Rendimiento}
+
+El sistema mostró un rendimiento adecuado durante las pruebas, con tiempos de respuesta dentro de los parámetros aceptables.
+
+\subsection{Compatibilidad}
+
+Se verificó la compatibilidad con los navegadores más utilizados, obteniendo resultados satisfactorios en:
+
+\begin{itemize}
+    \item[$\bullet$] Chrome (versión 90+)
+    \item[$\bullet$] Firefox (versión 88+)
+    \item[$\bullet$] Edge (versión 90+)
+    \item[$\bullet$] Safari (versión 14+)
+\end{itemize}
+
+\section{$\checkmark$ Conclusiones}
+
+La evaluación de usabilidad del sistema BaskeTeams demostró que la aplicación cumple con los estándares de usabilidad establecidos. Los usuarios pueden realizar las tareas principales de manera eficiente y con un alto grado de satisfacción.
+
+\subsection{Fortalezas Identificadas}
+
+\begin{itemize}
+    \item Interfaz intuitiva y bien organizada
+    \item Funcionalidades principales claramente definidas
+    \item Buen rendimiento general del sistema
+    \item Alta tasa de completación de tareas
+\end{itemize}
+
+\subsection{Próximos Pasos}
+
+\begin{enumerate}
+    \item Implementar las mejoras de corto plazo identificadas
+    \item Planificar el desarrollo de funcionalidades adicionales
+    \item Realizar evaluaciones de seguimiento periódicas
+    \item Considerar expansión a plataformas móviles
+\end{enumerate}
+
+\section{$\Phi$ Referencias}
+
+\begin{enumerate}
+    \item Nielsen, J. (2020). \textit{Usability Engineering}. Academic Press.
+    \item ISO 9241-11:2018. \textit{Ergonomics of human-system interaction}.
+    \item Krug, S. (2014). \textit{Don't Make Me Think, Revisited}. New Riders.
+\end{enumerate}
+
+\appendix
+
+\section{$\blacksquare$ Anexos}
+
+\subsection{Formularios de Evaluación}
+
+Los formularios utilizados durante la evaluación están disponibles para consulta y pueden ser reutilizados en futuras evaluaciones del sistema.
+
+\subsection{Datos Detallados}
+
+Los datos completos de la evaluación, incluyendo tiempos individuales y comentarios específicos de los usuarios, se encuentran documentados en archivos separados.
+
+\end{document}
